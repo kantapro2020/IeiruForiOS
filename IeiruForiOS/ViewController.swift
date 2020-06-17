@@ -12,28 +12,44 @@ import CoreLocation
 /// Location の View
 class ViewController: UIViewController {
     
+    
+    @IBOutlet weak var name: UITextField!
     /// 緯度を表示するラベル
     @IBOutlet weak var latitude: UILabel!
     /// 経度を表示するラベル
     @IBOutlet weak var longitude: UILabel!
+    @IBOutlet weak var NameList: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLocationManager()
+    }
+    @IBAction func SendBtn(_ sender: Any) {
+        let inputText = name.text
+        NameList.text = inputText
+    }
+    
+    
+    
+    
+    
+    
+    
+    //
+    
     // 緯度
     var latitudeNow: String = ""
     // 経度
     var longitudeNow: String = ""
-
+    
     /// ロケーションマネージャ
     var locationManager: CLLocationManager!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // ロケーションマネージャのセットアップ
-        setupLocationManager()
-    }
-
+    
+    
+    
     /// "位置情報を取得"ボタンを押下した際、位置情報をラベルに反映する
     
-
+    
     /// "位置情報を取得"ボタンを押下した際、位置情報をラベルに反映する
     /// - Parameter sender: "位置情報を取得"ボタン
     @IBAction func TupSendBtn(_ sender: Any) {
@@ -41,7 +57,7 @@ class ViewController: UIViewController {
         let status = CLLocationManager.authorizationStatus()
         if status == .denied {
             showAlert()
-        } else if status == .authorizedWhenInUse {
+        } else if status == .authorizedAlways {
             self.latitude.text = latitudeNow
             self.longitude.text = longitudeNow
         }
@@ -50,26 +66,29 @@ class ViewController: UIViewController {
         self.latitude.text = "デフォルト"
         self.longitude.text = "デフォルト"
     }
-
-
+    
+    
     /// ロケーションマネージャのセットアップ
     func setupLocationManager() {
         locationManager = CLLocationManager()
-
+        
         // 権限をリクエスト
         guard let locationManager = locationManager else { return }
-        locationManager.requestWhenInUseAuthorization()
-
+//        アプリを使用中のみ許可
+//        locationManager.requestWhenInUseAuthorization()
+//        常に許可
+        locationManager.requestAlwaysAuthorization()
+        
         // マネージャの設定
         let status = CLLocationManager.authorizationStatus()
-
+        
         // ステータスごとの処理
-        if status == .authorizedWhenInUse {
+        if status == .authorizedAlways {
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
         }
     }
-
+    
     /// アラートを表示する
     func showAlert() {
         let alertTitle = "位置情報取得が許可されていません。"
@@ -93,7 +112,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CLLocationManagerDelegate {
-
+    
     /// 位置情報が更新された際、位置情報を格納する
     /// - Parameters:
     ///   - manager: ロケーションマネージャ
@@ -109,3 +128,4 @@ extension ViewController: CLLocationManagerDelegate {
 }
 /// "クリア"ボタンを押下した際、ラベルを初期化する
 /// - Parameter sender: "クリア"ボタン
+
