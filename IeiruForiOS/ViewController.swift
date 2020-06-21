@@ -5,7 +5,6 @@
 //  Created by 蛭間寛大 on 2020/06/15.
 //  Copyright © 2020 蛭間寛大. All rights reserved.
 //
-
 import UIKit
 import CoreLocation
 
@@ -27,15 +26,12 @@ class ViewController: UIViewController {
     @IBAction func SendBtn(_ sender: Any) {
         let inputText = name.text
         NameList.text = inputText
+        func searchGithubUser(query: String) {
+
+            let url = URL(string: "https://api.github.com/search/users?q=" + query)!
+            let request = URLRequest(url: url)
+        }
     }
-    
-    
-    
-    
-    
-    
-    
-    //
     
     // 緯度
     var latitudeNow: String = ""
@@ -109,6 +105,7 @@ class ViewController: UIViewController {
         // Alertを表示
         present(alert, animated: true, completion: nil)
     }
+    
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -125,6 +122,7 @@ extension ViewController: CLLocationManagerDelegate {
         self.latitudeNow = String(latitude!)
         self.longitudeNow = String(longitude!)
     }
+    
 }
 /// "クリア"ボタンを押下した際、ラベルを初期化する
 /// - Parameter sender: "クリア"ボタン
