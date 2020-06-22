@@ -4,7 +4,6 @@
 //
 //  Created by 蛭間寛大 on 2020/06/15.
 //  Copyright © 2020 蛭間寛大. All rights reserved.
-//
 import UIKit
 import CoreLocation
 
