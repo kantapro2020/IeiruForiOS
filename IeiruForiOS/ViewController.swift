@@ -56,25 +56,38 @@ class ViewController: UIViewController {
             self.latitude.text = latitudeNow
             self.longitude.text = longitudeNow
         }
-        
-        // HTTPリクエスト
-        let url = URL(string: "http://18.176.193.22/users/")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = postData
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("error: \(error)")
-            } else {
-                if let response = response as? HTTPURLResponse {
-                    print("statusCode: \(response.statusCode)")
-                }
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("data: \(dataString)")
-                }
-            }
-        }
-        task.resume()
+
+                let Url = String(format: "http://18.176.193.22/users/")
+                    guard let serviceUrl = URL(string: Url) else { return }
+                    let parameters: [String: Any] = [
+                        "user": [
+                            "name" : NameList.text,
+                            "longitude" : latitudeNow,
+                            "latitude": longitudeNow
+                        ]
+                    ]
+                    var request = URLRequest(url: serviceUrl)
+                    request.httpMethod = "POST"
+                    request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+                    guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+                        return
+                    }
+                    request.httpBody = httpBody
+                    request.timeoutInterval = 20
+                    let session = URLSession.shared
+                    session.dataTask(with: request) { (data, response, error) in
+                        if let response = response {
+                            print(response)
+                        }
+                        if let data = data {
+                            do {
+                                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                                print(json)
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    }.resume()
         
         
     }
