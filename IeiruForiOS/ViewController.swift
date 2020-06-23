@@ -6,6 +6,8 @@
 //  Copyright © 2020 蛭間寛大. All rights reserved.
 import UIKit
 import CoreLocation
+//httpリクエスト
+import Foundation
 
 /// Location の View
 class ViewController: UIViewController {
@@ -43,8 +45,6 @@ class ViewController: UIViewController {
     
     
     /// "位置情報を取得"ボタンを押下した際、位置情報をラベルに反映する
-    
-    
     /// "位置情報を取得"ボタンを押下した際、位置情報をラベルに反映する
     /// - Parameter sender: "位置情報を取得"ボタン
     @IBAction func TupSendBtn(_ sender: Any) {
@@ -56,7 +56,29 @@ class ViewController: UIViewController {
             self.latitude.text = latitudeNow
             self.longitude.text = longitudeNow
         }
+        
+        // HTTPリクエスト
+        let url = URL(string: "http://18.176.193.22/users/")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = postData
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("error: \(error)")
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    print("statusCode: \(response.statusCode)")
+                }
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    print("data: \(dataString)")
+                }
+            }
+        }
+        task.resume()
+        
+        
     }
+    //リセットボタン
     @IBAction func Clear(_ sender: Any) {
         self.latitude.text = "デフォルト"
         self.longitude.text = "デフォルト"
@@ -125,4 +147,3 @@ extension ViewController: CLLocationManagerDelegate {
 }
 /// "クリア"ボタンを押下した際、ラベルを初期化する
 /// - Parameter sender: "クリア"ボタン
-
