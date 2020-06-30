@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D64322A524AB1BB700FA2FA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64322A424AB1BB700FA2FA2 /* User.swift */; };
+		D64322A724AB1C3700FA2FA2 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64322A624AB1C3700FA2FA2 /* Response.swift */; };
 		D6E9F97F2497B7B4008CB47E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E9F97E2497B7B4008CB47E /* AppDelegate.swift */; };
 		D6E9F9812497B7B4008CB47E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E9F9802497B7B4008CB47E /* SceneDelegate.swift */; };
 		D6E9F9832497B7B4008CB47E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E9F9822497B7B4008CB47E /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D64322A424AB1BB700FA2FA2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D64322A624AB1C3700FA2FA2 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		D6E9F97B2497B7B4008CB47E /* IeiruForiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IeiruForiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E9F97E2497B7B4008CB47E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6E9F9802497B7B4008CB47E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				D6E9F9872497B7B6008CB47E /* Assets.xcassets */,
 				D6E9F9892497B7B6008CB47E /* LaunchScreen.storyboard */,
 				D6E9F98C2497B7B6008CB47E /* Info.plist */,
+				D64322A424AB1BB700FA2FA2 /* User.swift */,
+				D64322A624AB1C3700FA2FA2 /* Response.swift */,
 			);
 			path = IeiruForiOS;
 			sourceTree = "<group>";
@@ -259,9 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D64322A524AB1BB700FA2FA2 /* User.swift in Sources */,
 				D6E9F9832497B7B4008CB47E /* ViewController.swift in Sources */,
 				D6E9F97F2497B7B4008CB47E /* AppDelegate.swift in Sources */,
 				D6E9F9812497B7B4008CB47E /* SceneDelegate.swift in Sources */,
+				D64322A724AB1C3700FA2FA2 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +358,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = L22KL8Z2P4;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -410,6 +419,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L22KL8Z2P4;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

@@ -2,9 +2,10 @@
 //  AppDelegate.swift
 //  IeiruForiOS
 //
-//  Created by KenzaburoTakagi on 2020/05/04.
-//  Copyright © 2020 KenzaburoTakagi. All rights reserved.
+//  Created by 蛭間寛大 on 2020/06/15.
+//  Copyright © 2020 蛭間寛大. All rights reserved.
 //
+
 import UIKit
 import CoreLocation
 import UserNotifications
@@ -44,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        
+
         if CLLocationManager.significantLocationChangeMonitoringAvailable() {
             locationManager.startMonitoringSignificantLocationChanges()
         }
@@ -54,9 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.startMonitoringSignificantLocationChanges()
         let location = locationManager.location
 
-        print("**************************")
-        print(location?.coordinate.latitude)
-        print(location?.coordinate.longitude)
         return true
     }
     
@@ -65,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         content.title = "お知らせ"
         content.body = "位置情報アップデート中"
         content.sound = UNNotificationSound.default
-        
+
         // 直ぐに通知を表示
         let request = UNNotificationRequest(identifier: "immediately", content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)

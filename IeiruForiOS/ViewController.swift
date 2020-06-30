@@ -10,13 +10,13 @@ import CoreLocation
 /// Location の View
 class ViewController: UIViewController {
     //　nameテキストフィールド
-    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     // startbtn
     @IBOutlet weak var startBtn: UIButton!
     // finishbtn
     @IBOutlet weak var finishBtn: UIButton!
     //　user一覧表示
-    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var usersLabel: UILabel!
     
     var locationManager: CLLocationManager!
     var latitude: Double?
@@ -25,21 +25,22 @@ class ViewController: UIViewController {
     
     let urlString = "http://18.176.193.22/users"
     
-    override func viewDidload() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-    
-        getLocationInfo(completion: { lines in
-            DispatchQueue.main.async {
-                // labelの出し方は要検討
-                let LineHeightStyle = NSMutableParagraphStyle()
-                let lineSpaceSize = CGFloat(10)
-                LineHeightStyle.lineSpacing = lineSpaceSize
-                let lineHeightAttr = [NSAttributedString.Key.paragraphStyle: LineHeightStyle]
-                self.usersLabel.frame.size.height = (UIFont.systemFontSize + lineSpaceSize) * CGFloat(lines + 3)
-                self.usersLabel.attributedText = NSMutableAttributedString(string: self.usersIeiru ?? "", attributes: lineHeightAttr)
-            }
-        })
+        
+            getLocationInfo(completion: { lines in
+                DispatchQueue.main.async {
+                    // labelの出し方は要検討
+                    let LineHeightStyle = NSMutableParagraphStyle()
+                    let lineSpaceSize = CGFloat(10)
+                    LineHeightStyle.lineSpacing = lineSpaceSize
+                    let lineHeightAttr = [NSAttributedString.Key.paragraphStyle: LineHeightStyle]
+                    self.usersLabel.frame.size.height = (UIFont.systemFontSize + lineSpaceSize) * CGFloat(lines + 3)
+                    self.usersLabel.attributedText = NSMutableAttributedString(string: self.usersIeiru ?? "", attributes: lineHeightAttr)
+                }
+            })
     }
+    
     
     override func viewDidLayoutSubviews() {
         usersLabel.text = usersIeiru
@@ -150,7 +151,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension LocationViewController: CLLocationManagerDelegate {
+extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
         self.latitude = location?.coordinate.latitude
@@ -164,6 +165,6 @@ extension LocationViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("うんこおおおおおおおおおおお")
+        print("hogehogehoge")
     }
 }

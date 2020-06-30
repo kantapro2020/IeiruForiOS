@@ -20,45 +20,39 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="name:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="OKU-G5-SU7"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sI-YN-SAf">
                                 <rect key="frame" x="18" y="171" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="FINISH"/>
                                 <connections>
-                                    <action selector="Clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0DR-bk-crd"/>
                                     <action selector="tapFinishBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eZ2-TA-BoA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="デフォルト" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpi-AS-auB">
-                                <rect key="frame" x="18" y="224" width="87" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mv6-fq-uyX">
                                 <rect key="frame" x="18" y="133" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="START"/>
                                 <connections>
-                                    <action selector="TupSendBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xsl-C1-cGh"/>
                                     <action selector="tapStartBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zbw-0w-YQa"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="デフォルト" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpi-AS-auB">
+                                <rect key="frame" x="0.0" y="209" width="414" height="687"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="finishBtn" destination="6sI-YN-SAf" id="4d9-bV-NZk"/>
-                        <outlet property="latitude" destination="xpi-AS-auB" id="tHY-G4-WZk"/>
-                        <outlet property="name" destination="TRm-NR-6NO" id="grg-nz-W1x"/>
+                        <outlet property="nameTextField" destination="TRm-NR-6NO" id="Ppw-I4-CA0"/>
                         <outlet property="startBtn" destination="Mv6-fq-uyX" id="hvT-AC-ryt"/>
-                        <outlet property="userLabel" destination="xpi-AS-auB" id="E3e-xk-nmu"/>
+                        <outlet property="usersLabel" destination="xpi-AS-auB" id="Ybl-Cr-k2O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
