@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     var latitude: Double?
     var longitude: Double?
     var usersIeiru: String?
+    var registeredName: String?
     
     let urlString = "http://18.176.193.22/users"
     
@@ -30,15 +31,15 @@ class ViewController: UIViewController {
         
             getLocationInfo(completion: { lines in
                 DispatchQueue.main.async {
-                    // labelの出し方は要検討
-                    let LineHeightStyle = NSMutableParagraphStyle()
-                    let lineSpaceSize = CGFloat(10)
-                    LineHeightStyle.lineSpacing = lineSpaceSize
-                    let lineHeightAttr = [NSAttributedString.Key.paragraphStyle: LineHeightStyle]
-                    self.usersLabel.frame.size.height = (UIFont.systemFontSize + lineSpaceSize) * CGFloat(lines + 3)
-                    self.usersLabel.attributedText = NSMutableAttributedString(string: self.usersIeiru ?? "", attributes: lineHeightAttr)
-                }
-            })
+                        // labelの出し方は要検討
+                        let LineHeightStyle = NSMutableParagraphStyle()
+                        let lineSpaceSize = CGFloat(10)
+                        LineHeightStyle.lineSpacing = lineSpaceSize
+                        let lineHeightAttr = [NSAttributedString.Key.paragraphStyle: LineHeightStyle]
+                        self.usersLabel.frame.size.height = (UIFont.systemFontSize + lineSpaceSize) * CGFloat(lines + 3)
+                        self.usersLabel.attributedText = NSMutableAttributedString(string: self.usersIeiru ?? "", attributes: lineHeightAttr)
+                    }
+                })
     }
     
     
@@ -115,40 +116,46 @@ class ViewController: UIViewController {
     }
     
     func postLocationInfo() {
-        guard let url = URL(string: urlString) else { return }
-        let registeredName = UserDefaults.standard.string(forKey: "name")
-        
-        let parameters: [String: Any] = [
-            "user": [
-                "name": registeredName ?? nameTextField.text,
-                "latitude" : self.latitude,
-                "longitude": self.longitude
+            guard let url = URL(string: urlString) else { return }
+            let userDefaults = UserDefaults.standard
+    //        userDefaults.removeObject(forKey: "name")
+            let name = userDefaults.object(forKey: "name") as? String
+            guard let nameText = nameTextField.text else { return }
+            if let name = name {
+                registeredName = name
+            } else {
+                UserDefaults.standard.set(self.nameTextField.text, forKey: "name")
+                registeredName = nameText
+            }
+            
+            let parameters: [String: Any] = [
+                "user": [
+                    "name": registeredName,
+                    "latitude" : self.latitude,
+                    "longitude": self.longitude
+                ]
             ]
-        ]
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
-            return
-        }
-        request.httpBody = httpBody
-        request.timeoutInterval = 20
-        let session = URLSession.shared
-        session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print(response)
-            }
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    UserDefaults.standard.set(self.nameTextField.text, forKey: "name")
-                    print(json)
-                } catch {
-                    print(error)
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+            guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
+            request.httpBody = httpBody
+            request.timeoutInterval = 20
+            let session = URLSession.shared
+            session.dataTask(with: request) { (data, response, error) in
+                if let response = response {
+                    print(response)
                 }
-            }
-        }.resume()
-    }
+                if let data = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: [])
+                        print(json)
+                    } catch {
+                        print(error)
+                    }
+                }
+            }.resume()
+        }
 }
 
 extension ViewController: CLLocationManagerDelegate {
