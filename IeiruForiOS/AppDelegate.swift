@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-
+        // 位置が大きく変わった時にPOSTリクエストをする（significant）
         if CLLocationManager.significantLocationChangeMonitoringAvailable() {
             locationManager.startMonitoringSignificantLocationChanges()
         }

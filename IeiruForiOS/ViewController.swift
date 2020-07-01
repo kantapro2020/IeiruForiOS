@@ -62,10 +62,11 @@ class ViewController: UIViewController {
         locationManager.requestAlwaysAuthorization()
         
         let status = CLLocationManager.authorizationStatus()
+        //大きく位置が変わった時にupdate
         if status == .authorizedAlways {
             locationManager.delegate = self
             locationManager.requestLocation()
-            locationManager.startUpdatingLocation()
+            locationManager.startMonitoringSignificantLocationChanges()
             locationManager.allowsBackgroundLocationUpdates = true
         } else {
             showAlert()
